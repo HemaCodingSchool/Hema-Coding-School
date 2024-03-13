@@ -1,6 +1,7 @@
 
 import './App.css';
-import Home from "./Home";
+// import Home from "./Home";
+import Registration from "./Forms/Registration";
 function App() {
   return (
     <div >
@@ -12,7 +13,7 @@ function App() {
 
         </ul>
       </nav>
-     <Home/>
+     <Registration/>
     </div>
   );
 }
