@@ -4,7 +4,7 @@ import "./Login.css";
 import logoImage from "../../src/Images/Logo.png";
 import { useNavigate } from "react-router-dom";
 
-const Login = () => {
+const Login = ({updateCustomer}) => {
   const navigate = useNavigate();
   const [loginError, setLoginError] = useState("");
   const [loginData, setLoginData] = useState({
@@ -16,8 +16,10 @@ const Login = () => {
     e.preventDefault();
 
     try {
-      await axios.post("http://localhost:3001/api/login", loginData);
+      const response = await axios.post("http://localhost:3001/api/login", loginData);
       navigate("/account-details");
+      updateCustomer(response.data.customer)
+      
     } catch (error) {
       console.error("Login failed", error);
       setLoginError("Invalid username or password. Please try again.");

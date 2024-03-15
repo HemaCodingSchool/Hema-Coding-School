@@ -25,6 +25,10 @@ const userSchema = new mongoose.Schema({
   accountNumber: Number,
   branch: String,
   phoneNumber: Number,
+  balance :{
+    type: Number,
+    default:0
+  }
 });
 
 const Customer = mongoose.model("Customer", userSchema);
@@ -63,7 +67,15 @@ app.post("/api/login", async (req, res) => {
     }
     res.status(200).json({
       message: "Login successful",
+      customer:{
+        username:customer.username,
+        accountNumber:customer.accountNumber,
+        branch:customer.branch,
+        phoneNumber:customer.phoneNumber,
+        balance:customer.balance
+      }
     });
+    console.log(customer)
   } catch (error) {
     console.error(error);
     res.status(500).json({
