@@ -2,8 +2,7 @@ import React from "react";
 import './AccountDetails.css';
 import logoImage from "../../src/Images/Logo.png";
 
-const AccountDetails = ({customer}) => {
-  console.log(customer)
+const AccountDetails = ({customer, updatedBalance}) => {
   return (
     <div className="account-container">
       <div className="image-account-container"></div>
@@ -16,7 +15,11 @@ const AccountDetails = ({customer}) => {
       <p>Account Number:{customer.accountNumber}</p>
       <p>Branch:{customer.branch}</p>
       <p>Phone Number:{customer.phoneNumber}</p>
-      <p>Available Balance:{customer.balance}</p>
+      {/* <p>Available Balance:{customer.balance}</p> */}
+      <p>Available Balance:{updatedBalance === 0 ? customer.balance : updatedBalance} Balance</p>
+
+      
+
     </div>
     </div>
   );
