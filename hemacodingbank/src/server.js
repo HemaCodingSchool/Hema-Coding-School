@@ -100,11 +100,11 @@ app.post("/api/deposit", async (req, res) => {
     console.log(req.body);
     const customer = await Customer.findOne({ username, accountNumber });
     console.log(customer);
-    console.log(customer.balance)
-    console.log(depositAmount)
-    customer.balance = Number(customer.balance) + Number(depositAmount)
-    console.log(customer.balance)
-    await customer.save()
+    console.log(customer.balance);
+    console.log(depositAmount);
+    customer.balance = Number(customer.balance) + Number(depositAmount);
+    console.log(customer.balance);
+    await customer.save();
 
     if (!customer) {
       res.status(401).json({ message: "Invalid username and account number" });
@@ -118,21 +118,58 @@ app.post("/api/deposit", async (req, res) => {
     });
 
     await newDeposit.save();
-     return res.status(200).json({
-      message:"Deposit successful",
-      balance:customer.balance
-
-     });
+    return res.status(200).json({
+      message: "Deposit successful",
+      balance: customer.balance,
+    });
   } catch (error) {
     console.error(error);
     res.status(500).json({
       message: "Internal server error",
     });
   }
-
-  
+});
+const withdrawalSchema = new mongoose.Schema({
+  username: String,
+  accountNumber: Number,
+  withdrawalAmount: Number,
+  withdrawalType: String,
+  date: String,
 });
 
+const Withdrawal = mongoose.model("Withdrawal", withdrawalSchema);
+app.post("/api/withdraw", async (req, res) => {
+  try {
+
+    const {username,accountNumber,withdrawalAmount,withdrawalType,date} = req.body;
+
+   const customer=  await Customer.findOne({username, accountNumber});
+    console.log(req.body);
+    console.log(customer.balance)
+    console.log(withdrawalAmount)
+    customer.balance = customer.balance - withdrawalAmount;
+    console.log(customer.balance)
+    await customer.save()
+
+    return res.status(200).json({
+      message:"Withdrawal successful",
+      balance:customer.balance
+    })
+    const newWithdrawal = new Withdrawal({
+      username,
+      accountNumber,
+      withdrawalAmount,
+      withdrawalType,
+      date,
+    });
+    await newWithdrawal.save();
+  }  catch (error) {
+    console.error(error);
+    res.status(500).json({
+      message: "Internal server error",
+    });
+  }
+});
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`);
 });
