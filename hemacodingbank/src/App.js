@@ -3,10 +3,12 @@ import Home from "./Home";
 import Login from "./Forms/Login";
 import Registration from "./Forms/Registration";
 import AccountDetails from "./Forms/AccountDetails";
-import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
+import {  Routes, Route, Link,useNavigate } from "react-router-dom";
 import { useState } from "react";
 import DepositForm from "./Forms/DepositForm";
+import WithdrawalForm from "./Forms/WithdrawalForm"
 function App() {
+  const navigate = useNavigate()
   const [customer, setCustomer] = useState();
   const [updatedBalance,setUpdatedBalance] = useState(0)
   const upadetBalance = (newBalance)=>{
@@ -17,9 +19,11 @@ function App() {
     setCustomer(userData);
     console.log(userData);
   };
-
+const handleLogout=()=>{
+  navigate("/login")
+  setCustomer(null)
+}
   return (
-    <Router>
       <div>
         <nav>
           <ul>
@@ -54,10 +58,10 @@ function App() {
                   </Link>
                 </li>
                 <li>
-                  <Link className="nav-link">Withdraw</Link>
+                  <Link className="nav-link" to="/withdraw">Withdraw</Link>
                 </li>
                 <li>
-                  <button>Logout</button>
+                  <button onClick={handleLogout}>Logout</button>
                 </li>
               </>
             )}
@@ -76,9 +80,9 @@ function App() {
             element={<AccountDetails customer={customer} updatedBalance={updatedBalance}/>}
           />
           <Route path="/deposit" element={<DepositForm customer={customer} upadetBalance={upadetBalance}/>} />
+          <Route path = "/withdraw"element={<WithdrawalForm customer={customer} upadetBalance={upadetBalance}/>}/>
         </Routes>
       </div>
-    </Router>
   );
 }
 
