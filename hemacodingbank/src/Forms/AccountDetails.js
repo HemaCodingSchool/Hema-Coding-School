@@ -11,12 +11,13 @@ const AccountDetails = ({customer, updatedBalance}) => {
 
       <h2>Account Details :</h2>
 
-      <p>Username:{customer.username}</p>
-      <p>Account Number:{customer.accountNumber}</p>
-      <p>Branch:{customer.branch}</p>
-      <p>Phone Number:{customer.phoneNumber}</p>
+      <p>Username: {customer.username}</p>
+      <p>Account Number: {customer.accountNumber}</p>
+      <p>Branch: {customer.branch}</p>
+      <p>Phone Number: {customer.phoneNumber}</p>
       {/* <p>Available Balance:{customer.balance}</p> */}
-      <p>Available Balance:{updatedBalance === 0 ? customer.balance : updatedBalance} Balance</p>
+      <p>Available Balance:
+        <span style={{color:"green", fontSize:"24px", fontWeight:"600"}}> {updatedBalance === 0 ? customer.balance : updatedBalance}</span> Balance</p>
 
       
 

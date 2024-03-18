@@ -22,6 +22,8 @@
     display: flex;
     margin: 5px;
     margin-left: 40px;
+    color: #ba1919;
+
 }
 .text-deposit-container button{
     border: 1px solid rgb(131, 140, 239);

@@ -41,10 +41,9 @@ const DepositForm = ({ customer, upadetBalance }) => {
   };
   return (
     <div className="deposit-container">
-
       <div className="image-deposit-container"></div>
       <div className="text-deposit-container">
-      <img src={logoImage} alt="Hema Coding Bank logo" />
+        <img src={logoImage} alt="Hema Coding Bank logo" />
 
         <form onSubmit={handleDeposit}>
           <h2>Deposit Form :</h2>
@@ -62,6 +61,7 @@ const DepositForm = ({ customer, upadetBalance }) => {
           <label>Deposit Amount:</label>
           <input
             type="number"
+            placeholder="Deposit Amount"
             value={depositData.depositAmount}
             onChange={(e) =>
               setDepositData({ ...depositData, depositAmount: e.target.value })
@@ -71,6 +71,7 @@ const DepositForm = ({ customer, upadetBalance }) => {
           <label>Deposit Type:</label>
           <input
             type="text"
+            placeholder="Deposit Type"
             value={depositData.depositType}
             onChange={(e) =>
               setDepositData({ ...depositData, depositType: e.target.value })

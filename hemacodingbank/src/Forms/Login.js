@@ -43,6 +43,7 @@ const Login = ({updateCustomer}) => {
           <label>Username:</label>
           <input
             type="text"
+            placeholder="User Name"
             value={loginData.username}
             onChange={(e) =>
               setLoginData({ ...loginData, username: e.target.value })
@@ -53,6 +54,7 @@ const Login = ({updateCustomer}) => {
           <label>Password:</label>
           <input
             type="password"
+            placeholder="Password"
             value={loginData.password}
             onChange={(e) =>
               setLoginData({ ...loginData, password: e.target.value })

@@ -19,8 +19,7 @@ const Registration = () => {
     try {
       await axios.post("http://localhost:3001/api/signup", signupData);
       console.log("Signup successful");
-      navigate("/login")
-
+      navigate("/login");
     } catch (error) {
       console.error("Signup failed", error);
     }
@@ -45,6 +44,7 @@ const Registration = () => {
             <label>Username:</label>
             <input
               type="text"
+              placeholder="User Name"
               value={signupData.username}
               onChange={(e) =>
                 setSignupData({ ...signupData, username: e.target.value })
@@ -56,6 +56,7 @@ const Registration = () => {
             <label>Password:</label>
             <input
               type="password"
+              placeholder="Password"
               value={signupData.password}
               onChange={(e) =>
                 setSignupData({ ...signupData, password: e.target.value })
@@ -68,6 +69,7 @@ const Registration = () => {
             <label>Account Number:</label>
             <input
               type="number"
+              placeholder="Account Number"
               value={signupData.accountNumber}
               onChange={(e) => {
                 if (e.target.value.length <= 14) {
@@ -84,6 +86,7 @@ const Registration = () => {
             <label>Branch:</label>
             <input
               type="text"
+              placeholder="Branch Name"
               value={signupData.branch}
               onChange={(e) =>
                 setSignupData({ ...signupData, branch: e.target.value })
@@ -95,6 +98,7 @@ const Registration = () => {
             <label>Registered Phone Number:</label>
             <input
               type="number"
+              placeholder="Registered Phone Number"
               value={signupData.phoneNumber}
               onChange={(e) => {
                 if (e.target.value.length <= 10) {
